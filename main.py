@@ -10,13 +10,7 @@ class Question():
         self.wrong2 = wrong2
         self.wrong3 = wrong3
 
-
 lict = list()
-
-
-
-
-
 
 def check_answer():
     if answers[0].isChecked():
@@ -24,7 +18,6 @@ def check_answer():
         main_win.score += 1
     else:
         show_correct('Неправильно')
-
 
 def show_questions():
     RadioGroupbox.show()
@@ -38,21 +31,16 @@ def start_test():
     if button.text() == 'Ответить':
         check_answer()
         show_result()
-
     else:
         next_question()
         show_questions()
 
-
-
 app = QApplication([])
 main_win = QWidget()
 main_win.setWindowTitle('*Текст в подвале*')
-
 text = QLabel('ДеревнЯ')
 text2 = QLabel('Прав ли ты:')
 text3 = QLabel('Ответ скоро будет!')
-
 RadioGroupbox = QGroupBox('Варианты ответа')
 RadioGroupbox2 = QGroupBox('Результаты текста')
 button1 = QRadioButton('Энцы')
@@ -68,8 +56,6 @@ main_win.score = 0
 main_win.total = 0
 main_win.count = 0
 
-
-
 def ask(q: Question):
     text.setText(q.question)
     answers[0].setText(q.right_answer)
@@ -82,17 +68,14 @@ def next_question():
     main_win.total += 1
     main_win.counter += 1
     main_win.count += 1
-
     if main_win.counter == len(lict):
         main_win.counter = -1
-
     q=lict[main_win.counter]
     ask(q)
 
 def show_correct(res):
     text3.setText(answers[0].text())
     text2.setText(res)
-
 
 layout_quest = QHBoxLayout()
 layout_quest.addWidget(button1)
@@ -125,17 +108,12 @@ line5.addLayout(line4)
 
 line.addWidget(button, alignment = Qt.AlignCenter)
 
-
-
 q1 = Question('2023', '2023', '2024', '2022', '1953')
 q2 = Question('Что было в 1953', '1953', 'Динозавры', '3032', '6712')
 q3 = Question('Почему 1953', 'Да', 'эээ а как рулить', 'хз', 'нет')
 lict.append(q1)
 lict.append(q2)
 lict.append(q3)
-
-
-
 
 main_win.setLayout(line)
 main_win.show()
